@@ -12,7 +12,7 @@ public class BlockNode implements INode
     private StatementNode statement;
     private Lexeme rightCurly;
 
-    public BlockNode(Tokenizer tokenizer)  throws IOException, TokenizerException{
+    public BlockNode(Tokenizer tokenizer)  throws IOException, TokenizerException, ParserException{
         if (tokenizer.current().token()==Token.LEFT_CURLY){
             leftCurly = tokenizer.current();
             tokenizer.moveNext();

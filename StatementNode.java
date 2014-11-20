@@ -11,7 +11,7 @@ public class StatementNode implements INode
     private AssignmentNode assignment; // optional
     private StatementNode statement; // optional
 
-    public StatementNode (Tokenizer tokenizer)  throws IOException, TokenizerException{
+    public StatementNode (Tokenizer tokenizer)  throws IOException, TokenizerException, ParserException{
         if (tokenizer.current().token() != Token.RIGHT_CURLY){ // bad check?
             assignment = new AssignmentNode(tokenizer);
 

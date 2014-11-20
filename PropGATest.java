@@ -70,7 +70,7 @@ public class PropGATest {
 	/*
 	 * To test a inputFileName which is null. DOESN'T WORK! NEED TO FIX IT!
 	 */
-	@Test
+	@Test (expected= IllegalArgumentException.class)
     public void parseTestNullInputFileName() throws Exception{        
             Parser parser = new Parser();
             parser.open(null);
@@ -89,26 +89,25 @@ public class PropGATest {
 	/*
 	 * To test an empty file; doesn't work, need to be fixed!
 	 */
-	/*@Test
+	@Test (expected= ParserException.class)
     public void parseTestEmptyFile() throws Exception{        
-            Parser parser = new Parser();
-            parser.open(inputFileEmptyName);
-            INode root = parser.parse();
-            StringBuilder builder = new StringBuilder();
-            builder.append("PARSE TREE:\n");//fixed
-            root.buildString(builder, 0);//not fixed from here and to the end of this test
-            builder.append("\nEVALUATION:\n");
-            builder.append(root.evaluate(null));
-            System.out.println(builder.toString());       
-
+        Parser parser = new Parser();
+        parser.open(inputFileEmptyName);
+        INode root = parser.parse();
+        StringBuilder builder = new StringBuilder();
+        builder.append("PARSE TREE:\n");//fixed
+        root.buildString(builder, 0);//not fixed from here and to the end of this test
+        builder.append("\nEVALUATION:\n");
+        builder.append(root.evaluate(null));
+        System.out.println(builder.toString());   
     }
-	*/
+	
 	
 	/*
 	 * To test an incomplete assignment: DOESN'T WORK! NEED TO BE FIXED
 	 */
 	
-	/*@Test 
+	@Test (expected= ParserException.class)
 	public void testIncompleteAssignment() throws Exception{
 		Parser parser = new Parser();
         parser.open(fileWithIncompleteAssignment);
@@ -120,7 +119,7 @@ public class PropGATest {
         builder.append(root.evaluate(null));
         System.out.println(builder.toString());
 		
-	}*/
+	}
 	
 	/*
 	 * To test an incomplete assignment without semicolon: DOESN'T WORK! NEED TO BE FIXED

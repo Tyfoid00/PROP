@@ -7,19 +7,19 @@ import java.io.IOException;
  */
 public class AssignmentNode implements INode
 {
-    // assign = id , ‘=’ , expr , ‘;’ ;
+    // assign = id , '=' , expr , ';' ;
     private Lexeme id;
     private Lexeme equalSign;
     private ExpressionNode expr;
     private Lexeme semicolon;
 
-    public AssignmentNode(Tokenizer tokenizer) throws IOException, TokenizerException{
+    public AssignmentNode(Tokenizer tokenizer) throws IOException, TokenizerException, ParserException{
         // set id
         if (tokenizer.current().token()==Token.IDENT){
             id = tokenizer.current();
             tokenizer.moveNext();
         }else {
-            System.out.println("Parse error. Expected identifier, got " + tokenizer.current().value());
+        	throw new ParserException("Parse error. Expected identifier, got " + tokenizer.current().value());
         }
 
         // set equalsign
@@ -57,8 +57,9 @@ public class AssignmentNode implements INode
         tabs++;
         theTabs +="\t";
 
-            
+       
         builder.append(theTabs + id +  "\n");
+       
         builder.append(theTabs + equalSign + "\n");
         expr.buildString(builder, tabs);
         builder.append(theTabs + semicolon + "\n");
